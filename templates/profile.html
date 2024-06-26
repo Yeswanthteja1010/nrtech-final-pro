@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NR-Profile</title>
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+<style>
+    body {
+        background-color: #fff;
+        color: #f07b0e;
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .profile-container {
+        max-width: 600px;
+        margin: 110px auto 30px;
+        padding: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .profile-container h2 {
+        color: #f07b0e;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-field {
+        margin-bottom: 15px;
+    }
+
+    .profile-field label {
+        color: #fff;
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .profile-field input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .profile-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .profile-actions button,
+    .profile-actions a {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    .profile-actions button:hover,
+    .profile-actions a:hover {
+        background-color: #28a745;
+    }
+
+    .extra-actions {
+        text-align: center;
+    }
+
+    .extra-actions button,
+    .extra-actions a {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 20px 5px;
+        cursor: pointer;
+    }
+
+    .extra-actions button:hover,
+    .extra-actions a:hover {
+        background-color: #28a745;
+    }
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="profile-container">
+    <h2>My Profile</h2>
+    <div class="profile-field">
+        <label for="name">Name : {{user.username}}</label>
+        <input type="text" id="name" disabled>
+    </div>
+    <div class="profile-field">
+        <label for="email">Email : {{user.email}}</label>
+        <input type="email" id="email" disabled>
+    </div>
+    <div class="profile-field">
+        <label for="mobile">Mobile Number : {{user.mobile_number}} </label>
+        <input type="tel" id="mobile" disabled>
+    </div>
+    <div class="profile-actions">
+        <button id="edit-profile-btn">Edit Profile</button>
+        <button id="save-profile-btn" style="display:none;">Save Changes</button>
+        <!--<a href="{% static '#' %}">Forgot Password?</a>-->
+    </div>
+</div>
+
+<!--<div class="extra-actions">
+    <a href="{% url 'core:request-refund' %}">Request Refund</a>
+     <a href="{% static '#' %}">My Payments</a>
+     <button id="logout-btn">Logout</button>
+</div>-->
+
+<div class="extra-actions">
+    <a href="{% url 'core:orders' %}">My Orders</a>
+    <!-- <a href="{% static '#' %}">My Payments</a>-->
+    <!-- <button id="logout-btn">Logout</button>-->
+</div>
+
+
+<footer>
+    <p>&copy; 2024 NR Techcreatz Pvt Ltd. All rights reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        fetch('/profile')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('name').value = data.name;
+                document.getElementById('email').value = data.email;
+                document.getElementById('mobile').value = data.mobile;
+            });
+
+
+        document.getElementById('edit-profile-btn').addEventListener('click', function () {
+            const inputs = document.querySelectorAll('.profile-field input');
+            inputs.forEach(input => {
+                input.disabled = !input.disabled;
+                input.style.backgroundColor = input.disabled ? '#ccc' : '#fff';
+            });
+            document.getElementById('save-profile-btn').style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+
+
+        document.getElementById('save-profile-btn').addEventListener('click', function () {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+
+            fetch('/profile/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, mobile })
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    alert('Profile updated successfully');
+
+
+                    document.getElementById('name').value = data.name;
+                    document.getElementById('email').value = data.email;
+                    document.getElementById('mobile').value = data.mobile;
+
+
+                    const inputs = document.querySelectorAll('.profile-field input');
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                        input.style.backgroundColor = '#ccc';
+                    });
+                    document.getElementById('edit-profile-btn').style.display = 'inline-block';
+                    this.style.display = 'none';
+                });
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', function () {
+            // Perform logout operation (e.g., clear session or token)
+            fetch('/logout', { method: 'POST' })
+                .then(() => {
+                    // Redirect to the home page
+                    window.location.href = 'index.html';
+                });
+        });
+    });
+</script>
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+<!--{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR-About Us</title>
+    <link rel="stylesheet"
+        href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' %}">
+
+</head>
+
+<body >
+
+    <header>
+        <h1 class="logo"><span>NR </span> Techcreatz<sub>pvt ltd</sub></h1>
+        <nav class="navbar">
+            <ul>
+                <a href="index.html">Home</a>
+                <a href="#">About Us</a>
+                <a href="products.html">Products</a>
+                <a href="payment.html">Payment</a>
+                <a href="cart.html">Cart</a>
+                <a href="contactus.html">Contact Us</a>
+                <a href="profile.html">Profile</a>
+                <a href="log.html">Login</a>
+            </ul>
+        </nav>
+    </header>
+    <section>
+
+        <div class="content">
+            <h1 class="heading">
+                <span>a</span>
+                <span>b</span>
+                <span>o</span>
+                <span>u</span>
+                <span>t</span>
+                <span class="space"></span>
+                <span>u</span>
+                <span>s</span>
+            </h1>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="sec-content">
+        <img src="{% static './images/ab1.webp' %}" alt="">
+        <div>
+            <h3>Our Mission</h3>
+            <p>
+                NR TECHCREATZ Pvt Ltd. aims to revolutionize the way people interact with their living spaces by
+                offering
+                comprehensive home automation solutions. Their expertise in IoT and dedication to science and technology
+                position them as
+                a leader in the industry, catering to the growing demand for smart homes in today’s interconnected
+                world.
+            </p>
+        </div>
+    </section>
+
+    <section class="sec-content sec-content-reverse">
+        <img src="{% static './images/ab2.jpg' %}" alt="">
+        <div>
+            <h3>Company Vision</h3>
+            <p>
+                NR TECHCREATZ Pvt Ltd. is a home automation company based in Visakhapatnam, Andhra Pradesh, India. The
+                company specializes in integrating cutting-edge technology, particularly in the fields of IoT (Internet
+                of Things), science, and
+                technology, to provide innovative solutions for residential automation.
+            </p>
+        </div>
+    </section>
+
+    <section class="sec-content">
+        <img src="{% static '/images/ab3.jpg' %}" alt="">
+        <div>
+            <h3>Core Values</h3>
+            <p>
+                The company’s dedication to technological advancements and its focus on home automation sets it apart in
+                the
+                market. NR TECHCREATZ’s commitment to excellence is reflected in its CIN (Corporate Identification
+                Number): <em>U27320AP2023PTC111215</em>.
+                This unique identifier signifies NR TECHCREATZ’s official registration and compliance with legal and
+                regulatory requirements, ensuring
+                transparency and reliability in its operations.
+            </p>
+        </div>
+    </section>
+
+    <section class="sec-content sec-content-reverse">
+        <img src="{% static '/images/ab4.jpg' %}" alt="">
+        <div>
+            <h3>Innovation & Technology</h3>
+            <p>
+                Home automation refers to the process of automating various aspects of a residence, including lighting,
+                temperature control, security
+                systems, entertainment systems, and more. NR TECHCREATZ leverages the power of IoT devices and
+                intelligent systems to create smart homes
+                that offer convenience, energy efficiency, and enhanced security.
+            </p>
+        </div>
+    </section>
+
+    <section class="sec-content">
+        <img src="{% static '/images/ab5.jpg' %}" alt="">
+        <div>
+            <h3>Our Location</h3>
+            <p>
+                Located at Andhra University, A-HUB, Maddilapalem, Pincode: 530003, Visakhapatnam, NR TECHCREATZ is
+                strategically positioned to serve the
+                local community and beyond. Discover excellence with NR TECHCREATZ Private Limited – Your trusted source
+                for smart home solutions.
+                As proud bearers of ISO 9001:2015 certification (Certification No. QMS/C336/0823), we ensure the highest
+                standard of quality in every
+                product. Experience innovation and reliability that define modern living.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 NR Techcreatz Pvt Ltd. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>-->
+
+
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: lightsteelblue;
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    section {
+        padding: 6rem 0;
+    }
+
+    .content {
+        position: relative;
+        color: #333;
+        text-align: center;
+    }
+
+    .heading span {
+        font-size: 3rem;
+        font-weight: 700;
+        background: rgb(255, 165, 0, .2);
+        color: orange;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        text-transform: uppercase;
+    }
+
+    .heading span.space {
+        background: none;
+    }
+
+    .social-icons {
+        margin: 30px 0 30px 0;
+    }
+
+    .social-icons a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: orangered;
+        font-size: 2rem;
+        transition: color 0.1s ease-in-out;
+    }
+
+    .social-icons a:hover {
+        color: rebeccapurple;
+    }
+
+    .sec-content {
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        margin-bottom: 0;
+    }
+
+    .sec-content img {
+        flex: 1;
+        max-width: 100%;
+        height: 80%;
+        width: 40%;
+        border-radius: 10%;
+        margin-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .sec-content h3 {
+        font-size: 50px;
+        font-weight: bold;
+        color: darkorange;
+        text-decoration: underline;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .sec-content div {
+        flex: 1;
+        padding: 10px 50px;
+        color: aliceblue;
+        font-size: 30px;
+        width: 35%;
+        align-items: center;
+    }
+
+    .sec-content-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .sec-content-reverse img {
+        margin-right: 20px;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<main>
+    <!-- <header>
+        <h1 class="logo"><span>NR </span> Techcreatz<sub>pvt ltd</sub></h1>
+        <nav class="navbar">
+            <ul>
+                <a href="checkout/">Home</a>
+
+            </ul>
+        </nav>
+    </header>-->
+    <section>
+        <div class="content">
+            <h1 class="heading">
+                <span>a</span>
+                <span>b</span>
+                <span>o</span>
+                <span>u</span>
+                <span>t</span>
+                <span class="space"></span>
+                <span>u</span>
+                <span>s</span>
+            </h1>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/company/nr-techcreatz-pvt-ltd/"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </section>
+    <section class="sec-content">
+        <img src="{% static 'images/ab1.webp' %}" alt="">
+        <div>
+            <h3>Our Mission</h3>
+            <p style="color: #333;">
+                NR TECHCREATZ Pvt Ltd. aims to revolutionize the way people interact with their living spaces by
+                offering
+                comprehensive home automation solutions. Their expertise in IoT and dedication to science and technology
+                position them as a leader in the industry, catering to the growing demand for smart homes in today’s
+                interconnected
+                world.
+            </p>
+        </div>
+    </section>
+    <section class="sec-content sec-content-reverse">
+        <img src="{% static 'images/ab2.jpg' %}" alt="">
+        <div>
+            <h3>Company Vision</h3>
+            <p style="color: #333;">
+                NR TECHCREATZ Pvt Ltd. is a home automation company based in Visakhapatnam, Andhra Pradesh, India. The
+                company specializes in integrating cutting-edge technology, particularly in the fields of IoT (Internet
+                of Things), science, and technology, to provide innovative solutions for residential automation.
+            </p>
+        </div>
+    </section>
+    <section class="sec-content">
+        <img src="{% static 'images/ab3.jpg' %}" alt="">
+        <div>
+            <h3>Core Values</h3>
+            <p style="color: #333;">
+                The company’s dedication to technological advancements and its focus on home automation sets it apart in
+                the
+                market. NR TECHCREATZ’s commitment to excellence is reflected in its CIN (Corporate Identification
+                Number): <em>U27320AP2023PTC111215</em>.
+                This unique identifier signifies NR TECHCREATZ’s official registration and compliance with legal and
+                regulatory requirements, ensuring
+                transparency and reliability in its operations.
+            </p>
+        </div>
+    </section>
+    <section class="sec-content sec-content-reverse">
+        <img src="{% static 'images/ab4.jpg' %}" alt="">
+        <div>
+            <h3>Innovation & Technology</h3>
+            <p style="color: #333;">
+                Home automation refers to the process of automating various aspects of a residence, including lighting,
+                temperature control, security systems, entertainment systems, and more. NR TECHCREATZ leverages the
+                power of IoT devices and
+                intelligent systems to create smart homes that offer convenience, energy efficiency, and enhanced
+                security.
+            </p>
+        </div>
+    </section>
+    <section class="sec-content">
+        <img src="{% static 'images/ab5.jpg' %}" alt="">
+        <div>
+            <h3>Our Location</h3>
+            <p style="color: #333;">
+                Located at Andhra University, A-HUB, Maddilapalem, Pincode: 530003, Visakhapatnam, NR TECHCREATZ is
+                strategically positioned to serve the local community and beyond. Discover excellence with NR TECHCREATZ
+                Private Limited – Your trusted source
+                for smart home solutions. As proud bearers of ISO 9001:2015 certification (Certification No.
+                QMS/C336/0823), we ensure the highest
+                standard of quality in every product. Experience innovation and reliability that define modern living.
+            </p>
+        </div>
+    </section>
+</main>
+{% endblock content %}
+
+{% block extra_body %}
+<footer>
+    <p>&copy; 2024 NR Techcreatz Pvt Ltd. All rights reserved.</p>
+</footer>
+{% endblock extra_body %}

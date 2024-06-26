@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NR-Contact</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    body {
+        background-color: rgb(251, 218, 179);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .heading {
+        text-align: center;
+        padding: 12rem 3rem;
+        margin-top: 5%;
+    }
+
+    .heading span {
+        font-size: 3rem;
+        font-weight: 700;
+        background: rgb(255, 165, 0, .2);
+        color: orange;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        text-transform: uppercase;
+    }
+
+    .heading span.space {
+        background: none;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    fieldset {
+        border: 2px solid orange;
+        padding: 20px;
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    legend {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: darkorange;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #fbbf0a;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #fbbf0a;
+    }
+
+    .image img {
+        width: 150px;
+        height: auto;
+    }
+
+    .social-icons {
+        margin: 20px 0;
+    }
+
+    .social-icons a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: rgb(252, 17, 17);
+        font-size: 2rem;
+        transition: color 0.1s ease-in-out;
+    }
+
+    .social-icons a:hover {
+        color: #1ee5f3;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<main>
+    <div class="image">
+        <img src="{% static 'images/Logo.png' %}" alt="logo">
+    </div>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <section class="container">
+        <h1 class="heading">
+            <span>c</span>
+            <span>o</span>
+            <span>n</span>
+            <span>t</span>
+            <span>a</span>
+            <span>c</span>
+            <span>t</span>
+            <span class="space"></span>
+            <span>u</span>
+            <span>s</span>
+        </h1>
+        <fieldset>
+            <legend>Query Form</legend>
+            <form action="contactus.html" method="post">
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <label for="number">Mobile Number:</label>
+                <input type="number" name="number" placeholder="registered mobile number">
+                <label for="message">Message:</label>
+                <textarea name="message" rows="4" cols="30" placeholder="Enter your message"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </fieldset>
+    </section>
+</main>
+{% endblock content %}
+
+{% block extra_body %}
+<!--<footer>
+    <p>&copy; 2024 NR Techcreatz Pvt Ltd. All rights reserved.</p>
+</footer>-->
+{% endblock extra_body %}

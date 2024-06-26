@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="content">
+        <h1 class="heading">
+            <span>a</span>
+            <span>b</span>
+            <span>o</span>
+            <span>u</span>
+            <span>t</span>
+            <span class="space"></span>
+            <span>u</span>
+            <span>s</span>
+        </h1>
+
+    </div>
+</section>
+<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+    <span class="navbar-brand ">PRODUCTS</span>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> 
+          <div class="collapse navbar-collapse" id="basicExampleNav">-->
+</nav>
+
+
+<!--Section: Products v.3-->
+<section class="text-center mb-4 pl-5">
+
+    <div class=" row wow fadeIn">
+
+
+        {% for item in object_list %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" style="flex: 0 0 20%;">
+
+            <div class="card">
+
+                <div class="view overlay">
+                    {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+                        class="card-img-top" {% endcomment %} <img src="{{ item.image.url }}" class="card-img-top">
+                    <a href="{{ item.get_absolute_url }}">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <div class="card-body text-center">
+                    <a href="" class="grey-text">
+                        <h5>{{ item.get_category_display }}</h5>
+                    </a>
+                    <h5>
+                        <strong>
+                            <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                                <!-- <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>-->
+                            </a><br>
+                            <a href="{{ item.get_absolute_url }}" class="dark-grey-text"><button>Check out</button>
+                                <!--<span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>-->
+                            </a>
+                        </strong>
+                    </h5>
+
+                    <h4 class="font-weight-bold blue-text">
+                        <strong>Rs
+                            {% if item.discount_price %}
+                            {{ item.discount_price }}
+                            {% else %}
+                            {{ item.price }}
+                            {% endif %}
+                        </strong>
+                    </h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock content %}

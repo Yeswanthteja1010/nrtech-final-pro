@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NR-Home</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      /* overflow-y: hidden; */
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .home {
+      position: relative;
+      margin-top: 9vh;
+      width: 100%;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .home .text-container {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: rgba(255, 255, 255, 0.5); */
+      padding: 10px 20px;
+      border-radius: 5px;
+      animation: moveUpDown 2s ease infinite alternate;
+      /* Animation effect */
+    }
+
+    .text-container {
+      font-size: 80px;
+      font-weight: bolder;
+      text-transform: uppercase;
+      color: goldenrod;
+    }
+
+    @keyframes moveUpDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(40px);
+      }
+    }
+
+    .log {
+      position: relative;
+      left: 10px;
+      z-index: 1;
+    }
+
+    .log img {
+      position: absolute;
+      left: 40px;
+      width: 100px;
+      height: auto;
+      animation: moveClockwise 10s linear infinite;
+    }
+
+    .home img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+
+    .t1 {
+      /* height: 100vh; */
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .items {
+      /* display: flex;
+    flex-direction: row; */
+      display: grid;
+      grid-template-columns: 100%;
+      width: 100vw;
+      /* height: 100vh; */
+    }
+
+    main {
+      margin-bottom: 40px;
+      /* Adjust as needed based on footer height */
+    }
+
+
+    @keyframes moveClockwise {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+
+      25% {
+        transform: translateX(200px) translateY(0);
+      }
+
+      50% {
+        transform: translateX(100px) translateY(200px);
+      }
+
+      75% {
+        transform: translateX(0) translateY(200px);
+      }
+
+      100% {
+        transform: translateX(0) translateY(0);
+      }
+    }
+
+    .slider {
+      margin-top: 5vh;
+      width: 100%;
+      height: 70vh;
+      position: relative;
+      margin-bottom: 10px;
+      overflow: hidden;
+      /* <===  */
+      border-radius: 15px;
+      padding: 0px 0px;
+      /* float: right; Align to the right */
+    }
+
+    .slide {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      transition: all 0.5s;
+      /* border:2px solid red; */
+    }
+
+    .slide img {
+      /* margin-top: 10vh; */
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .btn {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+      border: none;
+      border-radius: 50%;
+      z-index: 10;
+      cursor: pointer;
+      background-color: #ffffff2d;
+      font-size: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .btn:active {
+      transform: scale(1.1);
+    }
+
+    .btn-prev {
+      left: 8%;
+    }
+
+    .btn-next {
+      right: 8%;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <section>
+
+    <div class="items">
+      <div class="t1">
+        <div class="log">
+          <img src="{% static 'images/Logo.png' %}" alt="logo">
+        </div>
+        <div class="home">
+          <img src="{% static 'images/home.jpeg' %}" alt="home">
+
+          <div class="text-container">Home Automation</div>
+        </div>
+      </div>
+
+
+
+
+      <!--<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+        <span class="navbar-brand ">PRODUCTS</span>
+        
+      </nav>
+
+
+      
+      <section class="text-center mb-4 pl-5">
+        <h3 class="mt-4">PRODUCT 1</h3>
+        <div class=" row wow fadeIn">
+
+
+          {% for item in object_list %}
+          <div class="col-lg-2 col-md-4 col-sm-5 mb-4">
+
+            <div class="card">
+
+              <div class="view overlay">
+                {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+                  class="card-img-top" {% endcomment %} <img src="{{ item.image.url }}" class="card-img-top">
+                <a href="{{ item.get_absolute_url }}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <div class="card-body text-center">
+                <a href="" class="grey-text">
+                  <h5>{{ item.get_category_display }}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}-->
+      <!-- <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>-->
+      <!-- </a><br>
+                    <a href="{{ item.get_absolute_url }}" class="dark-grey-text"><button>Check out</button>
+                       --><!--<span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>-->
+      <!--  </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>$
+                    {% if item.discount_price %}
+                    {{ item.discount_price }}
+                    {% else %}
+                    {{ item.price }}
+                    {% endif %}
+                  </strong>
+                </h4>
+
+              </div>
+
+            </div>
+
+          </div>
+         
+          {% if forloop.counter|divisibleby:5 and not forloop.last %}
+        </div>
+        <h3 class="mt-4">PRODUCT 2</h3>
+        <div class="row wow fadeIn">
+          {% endif %}
+          {% endfor %}
+        </div>
+
+      </section>-->
+
+      <!-- Slider container -->
+      <div class="slider">
+        <!-- slide 1 -->
+        <div class="slide">
+          <img src="{% static './images/image1.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/image2.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/image3.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/image4.jpg' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/image5.jpg' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/image6.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/mobile.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/remote.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/touch panel.jpg' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './images/voice.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './PRODUCT FILE/6.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './PRODUCT FILE/8.png' %}" alt="" />
+        </div>
+
+        <div class="slide">
+          <img src="{% static './PRODUCT FILE/10.png' %}" alt="" />
+        </div>
+
+        <!-- Control buttons -->
+        <button class="btn btn-next"> >> </button>
+        <button class="btn btn-prev">
+          << </button>
+      </div>
+
+
+
+  </section>
+
+  <script>
+    "use strict";
+    // Select all slides
+    const slides = document.querySelectorAll(".slide");
+    slides.forEach((slide, indx) => {
+      slide.style.transform = `translateX(${indx * 100}%)`;
+    });
+
+    const nextSlide = document.querySelector(".btn-next");
+
+    let curSlide = 0;
+    let maxSlide = slides.length - 1;
+
+    nextSlide.addEventListener("click", function () {
+      if (curSlide === maxSlide) {
+        curSlide = 0;
+      } else {
+        curSlide++;
+      }
+
+      //   move slide by -100%
+      slides.forEach((slide, indx) => {
+        slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+      });
+    });
+
+    const prevSlide = document.querySelector(".btn-prev");
+
+    prevSlide.addEventListener("click", function () {
+      // check if current slide is the first and reset current slide to last
+      if (curSlide === 0) {
+        curSlide = maxSlide;
+      } else {
+        curSlide--;
+      }
+
+      //   move slide by 100%
+      slides.forEach((slide, indx) => {
+        slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>
+
+<!--Navbar-->
+<!-- <div class="container" style="max-width: 1200px;"> -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5"> -->
+
+<!-- Navbar brand -->
+<!-- <span class="navbar-brand">PRODUCTS</span> -->
+
+<!-- Collapse button -->
+<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+
+<!-- Collapsible content -->
+<!-- <div class="collapse navbar-collapse" id="basicExampleNav"> -->
+
+
+
+<!-- </nav> -->
+<!--/.Navbar-->
+
+<!--Section: Products v.3-->
+<!-- <section class="text-center mb-4">
+
+        <div class=" row wow fadeIn"> -->
+
+<!-- {% for item in object_list %}
+          <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card">
+
+              <div class="view overlay">
+                {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+                  class="card-img-top" {% endcomment %} <img src="{{ item.image.url }}" class="card-img-top">
+                <a href="{{ item.get_absolute_url }}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <div class="card-body text-center">
+                <a href="" class="grey-text">
+                  <h5>{{ item.get_category_display }}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                      <!  <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>-->
+<!-- </a><br>
+                    <a href="{{ item.get_absolute_url }}" class="dark-grey-text"><button>Check out</button> -->
+<!--  <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>-->
+<!-- </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>$
+                    {% if item.discount_price %}
+                    {{ item.discount_price }}
+                    {% else %}
+                    {{ item.price }}
+                    {% endif %}
+                  </strong>
+                </h4>
+
+              </div> 
+
+            </div>
+
+          </div> -->
+<!-- {% endfor %}
+        </div>
+
+      </section> -->
+<!--Section: Products v.3-->
+
+<!--Pagination-->
+
+<!-- {% if is_paginated %}
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          {% endif %}
+
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+
+    </div> -->
+
+
+{% endblock content %}
